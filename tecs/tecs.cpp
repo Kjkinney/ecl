@@ -496,12 +496,16 @@ void TECS::_update_pitch_setpoint()
 	// Comply with the specified vertical acceleration limit by applying a pitch rate limit
 	float ptchRateIncr = _dt * _vert_accel_limit / _tas_state;
 
+    if(!_climbout_mode_active){
+
 	if ((_pitch_setpoint - _last_pitch_setpoint) > ptchRateIncr) {
 		_pitch_setpoint = _last_pitch_setpoint + ptchRateIncr;
 
 	} else if ((_pitch_setpoint - _last_pitch_setpoint) < -ptchRateIncr) {
 		_pitch_setpoint = _last_pitch_setpoint - ptchRateIncr;
 	}
+
+    }
 
 	_last_pitch_setpoint = _pitch_setpoint;
 }
