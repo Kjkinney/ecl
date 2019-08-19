@@ -539,8 +539,9 @@ void TECS::_initialize_states(float pitch, float throttle_cruise, float baro_alt
 		if (_dt > DT_MAX || _dt < DT_MIN) {
 			_dt = DT_DEFAULT;
 		}
+    }
 
-	} else if (_climbout_mode_active) {
+        if (_climbout_mode_active) {
 		// During climbout use the lower pitch angle limit specified by the
 		// calling controller
 		_pitch_setpoint_min	   = pitch_min_climbout;
